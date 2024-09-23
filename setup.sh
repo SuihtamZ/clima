@@ -13,7 +13,7 @@ fi
 # Crear un entorno virtual llamado '.venv' si no existe
 if [ ! -d ".venv" ]; then
     echo "Creando entorno virtual..."
-    python -m .venv .venv
+    python -m venv .venv
 else
     echo "Entorno virtual '.venv' ya existe."
 fi
