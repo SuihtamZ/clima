@@ -3,20 +3,24 @@ import requests
 import sys
 import json
 import csv
+import os
+from dotenv import load_dotenv
 
-API_KEY = "3ed578c52d2cb9d7afd4c835118e3e80" 
+load_dotenv()
+API_KEY = os.getenv("OPENWEATHER_API_KEY")
+print(f"API_KEY: {API_KEY}")
 BASE_URL = "http://api.openweathermap.org/data/2.5/weather"
 
 def parse_arguments():
     parser = argparse.ArgumentParser(
-        description="Aplicación CLI para consultar el clima de una ubicación específica."
+        description="Consulta el clima actual de una ciudad con esta sencilla herramienta CLI."
     )
     
     # Argumento requerido para la ubicación
     parser.add_argument(
         "ubicacion",
         type=str,
-        help="Ubicación para consultar el clima (formato: ciudad, país)"
+        help="Especifica la ciudad y el país para consultar el clima (formato: ciudad, país). Ejemplo: 'Asunción, PY'"
     )
     
     # Argumento opcional para el formato de salida
@@ -25,7 +29,7 @@ def parse_arguments():
         type=str,
         choices=["json", "csv", "texto"],
         default="texto",
-        help="Formato de salida (json, csv o texto). Por defecto es texto."
+        help="Selecciona el formato de salida de los datos: 'json', 'csv' o 'texto' (predeterminado: 'texto')."
     )
 
     return parser.parse_args()
@@ -88,4 +92,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-

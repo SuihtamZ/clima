@@ -1,7 +1,7 @@
-Weather CLI
+Weather
 
 Descripción
-Weather CLI es una aplicación de línea de comandos (CLI) desarrollada en Python que permite a los usuarios consultar información climática actual de una ubicación específica. Utiliza la API de OpenWeatherMap para obtener datos en tiempo real y presenta la información de manera clara y personalizada directamente en la terminal.
+Weather es una aplicación de línea de comandos (CLI) desarrollada en Python que permite a los usuarios consultar información climática actual de una ubicación específica. Utiliza la API de OpenWeatherMap para obtener datos en tiempo real y presenta la información de manera clara y personalizada directamente en la terminal.
 
 Este proyecto está diseñado para mejorar el dominio del control de versiones con Git y el manejo de la terminal, proporcionando una experiencia práctica en el flujo de trabajo de desarrollo.
 
