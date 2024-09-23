@@ -10,12 +10,12 @@ then
     exit 1
 fi
 
-# Crear un entorno virtual llamado 'venv' si no existe
+# Crear un entorno virtual llamado '.venv' si no existe
 if [ ! -d ".venv" ]; then
     echo "Creando entorno virtual..."
     python -m .venv .venv
 else
-    echo "Entorno virtual 'venv' ya existe."
+    echo "Entorno virtual '.venv' ya existe."
 fi
 
 # Activar el entorno virtual
