@@ -8,7 +8,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 API_KEY = os.getenv("OPENWEATHER_API_KEY")
-print(f"API_KEY: {API_KEY}")
+#print(f"API_KEY: {API_KEY}") eliminar solo para debug...
 BASE_URL = "http://api.openweathermap.org/data/2.5/weather"
 
 def parse_arguments():
@@ -16,15 +16,13 @@ def parse_arguments():
         description="Consulta el clima actual de una ciudad con esta sencilla herramienta CLI."
     )
     
-    # Argumento requerido para la ubicación
-    parser.add_argument(
+    parser.add_argument( # Argumento requerido para la ubicación
         "ubicacion",
         type=str,
         help="Especifica la ciudad y el país para consultar el clima (formato: ciudad, país). Ejemplo: 'Asunción, PY'"
     )
     
-    # Argumento opcional para el formato de salida
-    parser.add_argument(
+    parser.add_argument( # Argumento opcional para el formato de salida
         "--formato",
         type=str,
         choices=["json", "csv", "texto"],
@@ -37,7 +35,7 @@ def parse_arguments():
 def get_weather(location):
     try:
         # Construye la URL de solicitud con la ubicación y la API Key
-        url = f"{BASE_URL}?q={location}&appid={API_KEY}&units=metric"
+        url = f"{BASE_URL}?q={location}&appid={API_KEY}&units=metric&lang=es"
         response = requests.get(url)
 
         # Verifica si la respuesta de la API es exitosa
