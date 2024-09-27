@@ -8,29 +8,31 @@ from dotenv import load_dotenv
 
 load_dotenv()
 API_KEY = os.getenv("OPENWEATHER_API_KEY")
-#print(f"API_KEY: {API_KEY}") eliminar solo para debug...
+# print(f"API_KEY: {API_KEY}") eliminar solo para debug...
 BASE_URL = "http://api.openweathermap.org/data/2.5/weather"
+
 
 def parse_arguments():
     parser = argparse.ArgumentParser(
         description="Consulta el clima actual de una ciudad con esta sencilla herramienta CLI."
     )
-    
-    parser.add_argument( # Argumento requerido para la ubicación
+
+    parser.add_argument(  # Argumento requerido para la ubicación
         "ubicacion",
         type=str,
-        help="Especifica la ciudad y el país para consultar el clima (formato: ciudad, país). Ejemplo: 'Asunción, PY'"
+        help="Especifica la ciudad y el país para consultar el clima (formato: ciudad, país). Ejemplo: 'Asunción, PY'",
     )
-    
-    parser.add_argument( # Argumento opcional para el formato de salida
+
+    parser.add_argument(  # Argumento opcional para el formato de salida
         "--formato",
         type=str,
         choices=["json", "csv", "texto"],
         default="texto",
-        help="Selecciona el formato de salida de los datos: 'json', 'csv' o 'texto' (predeterminado: 'texto')."
+        help="Selecciona el formato de salida de los datos: 'json', 'csv' o 'texto' (predeterminado: 'texto').",
     )
 
     return parser.parse_args()
+
 
 def get_weather(location):
     try:
@@ -51,17 +53,22 @@ def get_weather(location):
                 "city": city,
                 "country": country,
                 "temperature": temperature,
-                "description": weather_description.capitalize()
+                "description": weather_description.capitalize(),
             }
         elif response.status_code == 404:
-            print("Error: Ubicación no encontrada. Verifica la ortografía e intenta de nuevo.")
+            print(
+                "Error: Ubicación no encontrada. Verifica la ortografía e intenta de nuevo."
+            )
         elif response.status_code == 401:
             print("Error: API Key inválida. Verifica tu API Key y vuelve a intentarlo.")
         else:
-            print(f"Error: No se pudieron obtener datos. Código de estado: {response.status_code}")
+            print(
+                f"Error: No se pudieron obtener datos. Código de estado: {response.status_code}"
+            )
     except requests.exceptions.RequestException as e:
         print(f"Se produjo un error al consultar el clima: {e}")
     return None
+
 
 def print_weather(data, formato):
     if formato == "json":
@@ -75,6 +82,7 @@ def print_weather(data, formato):
         print(f"Temperatura: {data['temperature']}°C")
         print(f"Condiciones: {data['description']}")
 
+
 def main():
     # Parsear argumentos de línea de comandos
     args = parse_arguments()
@@ -87,6 +95,7 @@ def main():
         print_weather(weather_data, args.formato)
     else:
         print("No se pudieron obtener datos de clima.")
+
 
 if __name__ == "__main__":
     main()

@@ -128,3 +128,7 @@ Desktop.ini
 # Other files to ignore
 *.sqlite3
 *.db
+
+# Pre-commit files
+.pre-commit-config.yaml
+.pre-commit-cache/
